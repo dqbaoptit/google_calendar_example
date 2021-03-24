@@ -6,7 +6,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { signOut } from '../redux/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { route } from 'next/dist/next-server/server/router';
+import { motion } from 'framer-motion';
 
 const Authorization = dynamic(() => import('../containers/Authorization'));
 
@@ -145,14 +145,34 @@ export default function Home() {
                     defaultValue={7}
                     onChange={(e) => setAfter(e.target.value)}
                   />
-                  <button onClick={() => onFilter()}>Filter</button>
+                  <span
+                    className="noselect"
+                    onClick={() => onFilter()}
+                    style={{
+                      padding: '5px 15px',
+                      background: '#338eef',
+                      color: '#eee',
+                      cursor: 'pointer',
+                      borderRadius: 5,
+                      marginTop: 20,
+                      marginLeft: 20,
+                    }}
+                  >
+                    Filter
+                  </span>
                 </div>
               </div>
-              <div>
+              <motion.div
+                animate={{ x: 0, opacity: 1 }}
+                initial={{ x: 50, opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.8 }}
+                style={{ margin: 10 }}
+              >
                 {events.map((item, index) => (
                   <ItemEvent key={item.id} item={item} index={index} />
                 ))}
-              </div>
+              </motion.div>
             </div>
           )}
         </div>
@@ -169,10 +189,11 @@ const ItemEvent = ({ item }) => {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: '15px 30px',
+        padding: '10px 30px',
         background: 'rgba(3, 252, 161,.5)',
         borderRadius: 10,
         margin: 5,
+        cursor: 'pointer',
       }}
     >
       <p style={{ color: '#afafaf', marginRight: 10, fontSize: 13, flex: 1 }}>

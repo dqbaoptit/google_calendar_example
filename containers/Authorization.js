@@ -25,7 +25,7 @@ export default function AuthorizationContainer() {
         alignItems: 'center',
         flexDirection: 'column',
         padding: 30,
-        background: 'rgba(255, 0, 0, 0.5)',
+        background: 'rgba(51, 142, 239, 0.5)',
         borderRadius: 10,
       }}
     >
@@ -60,13 +60,13 @@ export default function AuthorizationContainer() {
               src={user.picture}
               alt=""
               style={{
-                height: 30,
-                width: 30,
+                height: 50,
+                width: 50,
                 borderRadius: 100,
                 marginRight: 10,
               }}
             />
-            <p>{user.name}</p>
+            <p style={{ color: '#222' }}>{user.name}</p>
           </div>
           <span
             className="noselect"
