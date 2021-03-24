@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { Authorization } from '../config/AuthorizationRoute';
 import { signIn, signOut } from '../redux/actions/auth';
 
-
 function Auth() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -13,19 +12,12 @@ function Auth() {
 
   useEffect(() => {
     async function check() {
-      try {
-        const data = await Authorization(accessToken);
-        dispatch(signIn({ ...data }));
-        localStorage.setItem('_access-token', accessToken);
-        localStorage.setItem('_refresh-token', refreshToken);
-        localStorage.setItem('_user', JSON.stringify(data));
-        router.push('/');
-      } catch (err) {
-        swal({
-          title: 'Something wrong',
-          icon: 'error',
-        });
-      }
+      const data = await Authorization(accessToken);
+      dispatch(signIn({ ...data }));
+      localStorage.setItem('_access-token', accessToken);
+      localStorage.setItem('_refresh-token', refreshToken);
+      localStorage.setItem('_user', JSON.stringify(data));
+      router.push('/');
     }
     check();
   }, []);
@@ -42,9 +34,7 @@ function Auth() {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-      >
-        
-      </div>
+      ></div>
     </>
   );
 }
