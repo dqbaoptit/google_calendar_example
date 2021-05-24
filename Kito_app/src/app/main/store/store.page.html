@@ -1,0 +1,64 @@
+<ion-header (click)="onCheckClickOutsideHeaderIcon($event)">
+  <app-header [headerCustom]="headerCustom"></app-header>
+</ion-header>
+
+<ion-content (click)="onCheckClickOutsideHeaderIcon($event)">
+  <app-search-bar-nav></app-search-bar-nav>
+
+  <div class="segment-container">
+    <ion-buttons class="segment">
+      <div class="segment__item" [ngClass]="{'segment__item--selected': currentRecommendedItemId == recommendedItem.id}"
+        *ngFor="let recommendedItem of recommendedItems" (click)="changeRecommendedItem(recommendedItem)">
+        {{ recommendedItem.name }}
+      </div>
+    </ion-buttons>
+  </div>
+
+  <div class="body">
+    <div class="header">
+      <img src="assets/icon/setting.svg" id="header-icon" class="header-icon active-effect"
+        (click)="toggleHasSetting(true)">
+
+      <div *ngIf="hasSetting" class="setting main-box-shadow">
+        <div class="setting-item">Giá cao > thấp</div>
+        <div class="setting-item">Giá thấp > cao</div>
+        <div class="setting-item">Hàng mới nhất</div>
+        <div class="setting-item">Bán chạy nhất</div>
+      </div>
+    </div>
+
+    <ion-buttons class="list">
+      <div *ngFor="let col of list" class="col main-box-shadow">
+        <div class="img-container">
+          <img [src]="col.thumbImage" class="img">
+        </div>
+        <div class="text-box">
+          <ion-label class="name three-dots-2">{{ col.name }}</ion-label>
+          <ion-label class="price">{{ dateTimeService.numberWithCommas(col.price) }} {{ col.unitPrice}}</ion-label>
+        </div>
+
+        <div *ngIf="col.amount <= 0" class="add-btn">
+          <ion-buttons class="modifier-btn modifier-btn-increase active-effect" (click)="openAddModal(col)">+
+          </ion-buttons>
+        </div>
+
+        <ion-buttons *ngIf="col.amount > 0" class="modifier">
+          <ion-buttons class="modifier-btn modifier-btn-decrease active-effect" (click)="decreaseAmount(col)">-
+          </ion-buttons>
+          <span class="counter">{{ col.amount }}</span>
+          <ion-buttons class="modifier-btn modifier-btn-increase active-effect" (click)="increaseAmount(col)">+
+          </ion-buttons>
+        </ion-buttons>
+      </div>
+    </ion-buttons>
+  </div>
+
+  <div class="cart-wrapper">
+    <div class="cart" (click)="goToCart()">
+      <ion-buttons class="cart-inner main-box-shadow">
+        <img src="assets/icon/cart.svg" class="cart-icon">
+        <ion-buttons *ngIf="cart.length" class="cart-amount">{{ calTotalItem() }}</ion-buttons>
+      </ion-buttons>
+    </div>
+  </div>
+</ion-content>

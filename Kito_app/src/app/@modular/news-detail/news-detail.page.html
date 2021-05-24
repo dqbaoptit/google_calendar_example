@@ -1,0 +1,12 @@
+<ion-header>
+  <app-header [headerCustom]="headerCustom"></app-header>
+</ion-header>
+
+<ion-content>
+  <app-search-bar-nav></app-search-bar-nav>
+
+  <ion-label class="main-title">{{ data.title }}</ion-label>
+  <img [src]="data.thumb_images[0].url">
+
+  <p class="text">{{ data.content }}</p>
+</ion-content>

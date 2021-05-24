@@ -1,0 +1,7 @@
+{
+  "name": "kitoapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

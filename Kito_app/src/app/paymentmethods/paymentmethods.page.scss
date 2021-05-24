@@ -1,0 +1,24 @@
+.header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-color);
+    font-size: 18px;
+    font-weight: 600;
+
+    @media screen and (max-width: 320px) {
+        font-size: 14px;
+    }
+}
+.title {
+    color: var(--main-color);
+    margin-left: 10px;
+}
+ion-item-group {
+    display: flex;
+    align-items: center;
+}
+.back-btn {
+    top: 40px;
+}

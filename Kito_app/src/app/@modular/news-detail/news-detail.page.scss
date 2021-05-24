@@ -1,0 +1,18 @@
+ion-content {
+  --padding-top: calc(80px + 45px);
+}
+
+.main-title {
+  font-size: 18px;
+  color: #002D63;
+  font-weight: 500;
+  margin: 10px 20px;
+  display: block;
+  text-align: center;
+}
+
+.text {
+  color: #828282;
+  font-size: 16px;
+  line-height: 1.5;
+}
